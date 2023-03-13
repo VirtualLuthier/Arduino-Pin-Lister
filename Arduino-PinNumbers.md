@@ -1,4 +1,5 @@
-| |PinList-A-Micro|PinList-A-Uno|
+|Pin|Pins-A-Micro|Pins-A-Uno|
+| -- | -- | -- |
 |A0|18|14|
 |A1|19|15|
 |A10|28|-1|

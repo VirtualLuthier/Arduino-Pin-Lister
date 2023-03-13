@@ -61,9 +61,22 @@ def writeMd(fName):
 	'''
 		Write the table in markdown syntax
 	'''
-	string = '';
-	for lineArr in allLinesArray:
+	string = ''
+	# show the headline row:
+	lineArr = allLinesArray[0]					
+	string += '|' + '|'.join(lineArr) + "|\n"
+
+	# show the | -- | ... row:
+	string += '|'
+	for _ in lineArr:
+		string += ' -- |'
+	string += "\n"
+
+	# show the data rows:
+	for ii in range(1, len(allLinesArray)):		
+		lineArr = allLinesArray[ii]
 		string += '|' + '|'.join(lineArr) + "|\n"
+
 	with open(fName, 'w') as inFile:
 		inFile.write(string)
 		
@@ -76,14 +89,14 @@ def analyzePinLists():
 		Build all lists and output csv and md file
 	'''
 	for fName in os.listdir('arduino-variants'):
-		if fName.startswith('PinList-') and fName.endswith('.txt'):
+		if fName.startswith('Pins-') and fName.endswith('.txt'):
 			analyzePinList('arduino-variants/' + fName)
 			
 	allPinNamesList = list(allPinNames)
 	allPinNamesList.sort()
 	allVariantNames.sort()
 	#print(allPinNamesList)
-	headerLineArray = [' ']
+	headerLineArray = ['Pin']
 	for variant in allVariantNames:
 		headerLineArray.append(variant)
 
